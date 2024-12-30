@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Recipe } from '../recipe.model';
 
 @Component({
@@ -19,4 +19,10 @@ export class RecipeListComponent {
       'https://www.tasteofhome.com/wp-content/uploads/2018/01/Flavorful-Chicken-Fajitas_EXPS_CIW19_12540_B08_30_6b-e1722260583441.jpg'
     ),
   ];
+
+  @Output() recipeWasSelected = new EventEmitter<Recipe>();
+
+  handleSelectedRecipe(recipe: Recipe) {
+    this.recipeWasSelected.emit(recipe);
+  }
 }

@@ -1,8 +1,18 @@
 <div class="row">
-    <div class="col-xs-5">
-        <app-recipe-list></app-recipe-list>
-    </div>
-    <div class="col-xs-7">
-        <app-recipe-detail></app-recipe-detail>
-    </div>
+  <div class="col-xs-5">
+    <!-- <app-recipe-list (recipeWasSelected)="handleSelectedRecipe($event)"></app-recipe-list> -->
+    <app-recipe-list
+      (recipeWasSelected)="selectedRecipe = $event"
+    ></app-recipe-list>
+  </div>
+  <div class="col-xs-7">
+    <app-recipe-detail
+      *ngIf="selectedRecipe; else infoText"
+      [recipe]="selectedRecipe"
+    ></app-recipe-detail>
+    <ng-template #infoText>
+      <p>Click on a recipe to view its details.</p>
+    </ng-template>
+  </div>
 </div>
+ 
